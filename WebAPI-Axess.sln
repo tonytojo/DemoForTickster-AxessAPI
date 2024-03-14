@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI-Axess", "WebAPI-Axess.csproj", "{CE26F0B9-6A30-4FF3-81B2-56B788166663}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE26F0B9-6A30-4FF3-81B2-56B788166663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE26F0B9-6A30-4FF3-81B2-56B788166663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE26F0B9-6A30-4FF3-81B2-56B788166663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE26F0B9-6A30-4FF3-81B2-56B788166663}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E0522A5-BAC3-4937-9AB0-4A5B5F381775}
+	EndGlobalSection
+EndGlobal

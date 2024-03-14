@@ -1,0 +1,1972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://teamaxess.com/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DCI4CRMService" targetNamespace="http://teamaxess.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpsBinding_IAxDCI4CRM_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://teamaxess.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/AxWebServices" />
+      <xs:element name="getConfigFile">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getConfigFileResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="getConfigFileResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBOCVersion">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBOCVersionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="getBOCVersionResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBOCUniversalTime">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBOCUniversalTimeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="getBOCUniversalTimeResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="axessForceGarbageColletor">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="axessForceGarbageColletorResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="axessForceGarbageColletorResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getServerVersion">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getServerVersionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="getServerVersionResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getModulVersion">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getModulVersionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="getModulVersionResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="login">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_szUserName" type="xs:string" />
+            <xs:element minOccurs="1" name="i_szPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="loginResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="loginResult" nillable="true" type="q1:DCI4CRMLOGINRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logout">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szUserName" type="xs:string" />
+            <xs:element minOccurs="1" name="i_szPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logoutResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="logoutResult" nillable="true" type="q2:DCI4CRMLOGOUTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getLogList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLogNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getLogListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getLogListResult" nillable="true" type="q3:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setEntitySnapshot">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szTableName" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setEntitySnapshotResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="setEntitySnapshotResult" nillable="true" type="q4:DCI4CRMSNAPSHOTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSnapshotList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nRownum" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxRows" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSnapshotListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getSnapshotListResult" nillable="true" type="q5:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setEntityDML">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="1" name="i_ctDCI4CRMLogLine" type="q6:DCI4CRMLOGLINE" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setEntityDMLResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="setEntityDMLResult" nillable="true" type="q7:DCI4CRMDMLRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSalesList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdZaehler" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSalesListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getSalesListResult" nillable="true" type="q8:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMediaID">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szWTPNr" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMediaIDResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getMediaIDResult" nillable="true" type="q9:DCI4CRMWTPCONVRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getWTPNr">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szMediaID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getWTPNrResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getWTPNrResult" nillable="true" type="q10:DCI4CRMWTPCONVRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsageList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdLeserTransNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsageListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getUsageListResult" nillable="true" type="q11:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsageOnlineList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdLeserTransOnlineNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsageOnlineListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getUsageOnlineListResult" nillable="true" type="q12:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getForeignPersonData">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szPrenome" type="xs:string" />
+            <xs:element minOccurs="1" name="i_szName" type="xs:string" />
+            <xs:element minOccurs="1" name="i_dtBirthDate" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getForeignPersonDataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getForeignPersonDataResult" nillable="true" type="q13:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getForeignSalesList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nVerkProjNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nKassaNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nSerienNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdLeserTransNr" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getForeignSalesListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getForeignSalesListResult" nillable="true" type="q14:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getChipOwner">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szMediaID" type="xs:string" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getChipOwnerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getChipOwnerResult" nillable="true" type="q15:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBarcodeSalesList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szBarcode" type="xs:string" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBarcodeSalesListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getBarcodeSalesListResult" nillable="true" type="q16:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBarcodeOwner">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_szBarcode" type="xs:string" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBarcodeOwnerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getBarcodeOwnerResult" nillable="true" type="q17:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getViewDetails4RecordList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="1" name="i_ctDCI4CRMRecordList" type="q18:DCI4CRMDETAIL" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getViewDetails4RecordListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getViewDetails4RecordListResult" nillable="true" type="q19:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getNamedSalesList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdZaehler" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getNamedSalesListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getNamedSalesListResult" nillable="true" type="q20:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getNamedUsageList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdLeserTransNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getNamedUsageListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getNamedUsageListResult" nillable="true" type="q21:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPaymentData">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nProjNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nKassaNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nTransNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nKassierID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nKassierAbrechNr" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPaymentDataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPaymentDataResult" nillable="true" type="q22:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPaymentModifyList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nPaymentModifyLogNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPaymentModifyListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPaymentModifyListResult" nillable="true" type="q23:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSalesModifyList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nSalesModifyLogNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getSalesModifyListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getSalesModifyListResult" nillable="true" type="q24:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPackageProductionList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdPackageZaehler" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPackageProductionListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPackageProductionListResult" nillable="true" type="q25:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPackageProductionData">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdPackageZaehler" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nProjNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nKassaNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nTransNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nBlockNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nPackageNr" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPackageProductionDataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPackageProductionDataResult" nillable="true" type="q26:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDiscountDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdZaehler" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDiscountDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getDiscountDetailsResult" nillable="true" type="q27:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearLogListFilter">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearLogListFilterResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="clearLogListFilterResult" nillable="true" type="q28:DCI4CRMRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addLogListFilter">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="1" name="i_ctAddLogListFilterReq" type="q29:DCI4CRMADDLOGLISTFILTERREQ" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addLogListFilterResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="addLogListFilterResult" nillable="true" type="q30:DCI4CRMADDLOGLISTFILTERESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getLogNr">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_dtDate" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getLogNrResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getLogNrResult" nillable="true" type="q31:DCI4CRMGETLOGNRRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getFilteredLoglist">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLogNrStart" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLogNrMax" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nFilterNr" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getFilteredLoglistResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getFilteredLoglistResult" nillable="true" type="q32:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPrePaidList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdPrePaidZaehler" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nFertigeFilterNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nFilterOptionNr" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPrePaidListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPrePaidListResult" nillable="true" type="q33:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPrePaidModifyList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdPrePaidModifyZaehler" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPrePaidModifyListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPrePaidModifyListResult" nillable="true" type="q34:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPPBCList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nLfdPPBCZaehler" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPPBCListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPPBCListResult" nillable="true" type="q35:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPPBCModifyList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="i_nSessionID" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nPPBCModifyLogNr" type="xs:decimal" />
+            <xs:element minOccurs="1" name="i_nMaxCount" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFertigeFilterNr" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="i_nFilterOptionNr" nillable="true" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPPBCModifyListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/AxWebServices" minOccurs="0" name="getPPBCModifyListResult" nillable="true" type="q36:DCI4CRMLOGLISTRESULT" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AxWebServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AxWebServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="DCI4CRMLOGINRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NKASSANR" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NPROJNR" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NSESSIONID" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMLOGINRESULT" nillable="true" type="tns:DCI4CRMLOGINRESULT" />
+      <xs:complexType name="DCI4CRMLOGOUTRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMLOGOUTRESULT" nillable="true" type="tns:DCI4CRMLOGOUTRESULT" />
+      <xs:complexType name="DCI4CRMLOGLISTRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTLOGLINE" nillable="true" type="tns:ArrayOfDCI4CRMLOGLINE" />
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMLOGLISTRESULT" nillable="true" type="tns:DCI4CRMLOGLISTRESULT" />
+      <xs:complexType name="ArrayOfDCI4CRMLOGLINE">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DCI4CRMLOGLINE" nillable="true" type="tns:DCI4CRMLOGLINE" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDCI4CRMLOGLINE" nillable="true" type="tns:ArrayOfDCI4CRMLOGLINE" />
+      <xs:complexType name="DCI4CRMLOGLINE">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTLOGVALUESNEW" nillable="true" type="tns:ArrayOfDCI4CRMLOGFIELD" />
+          <xs:element minOccurs="0" name="ACTLOGVALUESOLD" nillable="true" type="tns:ArrayOfDCI4CRMLOGFIELD" />
+          <xs:element minOccurs="0" name="DTTIMESTAMP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NLOGNR" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZKIND" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SZTABNAME" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMLOGLINE" nillable="true" type="tns:DCI4CRMLOGLINE" />
+      <xs:complexType name="ArrayOfDCI4CRMLOGFIELD">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DCI4CRMLOGFIELD" nillable="true" type="tns:DCI4CRMLOGFIELD" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDCI4CRMLOGFIELD" nillable="true" type="tns:ArrayOfDCI4CRMLOGFIELD" />
+      <xs:complexType name="DCI4CRMLOGFIELD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SZFIELDNAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SZFIELDVALUE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMLOGFIELD" nillable="true" type="tns:DCI4CRMLOGFIELD" />
+      <xs:complexType name="DCI4CRMSNAPSHOTRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NCOUNT" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NLOGNRAFTER" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NLOGNRBEFORE" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMSNAPSHOTRESULT" nillable="true" type="tns:DCI4CRMSNAPSHOTRESULT" />
+      <xs:complexType name="DCI4CRMDMLRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NLOGNR" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMDMLRESULT" nillable="true" type="tns:DCI4CRMDMLRESULT" />
+      <xs:complexType name="DCI4CRMWTPCONVRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZCONVERSIONTEXT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMWTPCONVRESULT" nillable="true" type="tns:DCI4CRMWTPCONVRESULT" />
+      <xs:complexType name="DCI4CRMDETAIL">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTDCI4CRMRECORDS" nillable="true" type="tns:ArrayOfDCI4CRMRECORDID" />
+          <xs:element minOccurs="0" name="SZQUERYFIELDNAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SZVIEWNAME" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMDETAIL" nillable="true" type="tns:DCI4CRMDETAIL" />
+      <xs:complexType name="ArrayOfDCI4CRMRECORDID">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DCI4CRMRECORDID" nillable="true" type="tns:DCI4CRMRECORDID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDCI4CRMRECORDID" nillable="true" type="tns:ArrayOfDCI4CRMRECORDID" />
+      <xs:complexType name="DCI4CRMRECORDID">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NRECORDID" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMRECORDID" nillable="true" type="tns:DCI4CRMRECORDID" />
+      <xs:complexType name="DCI4CRMRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMRESULT" nillable="true" type="tns:DCI4CRMRESULT" />
+      <xs:complexType name="DCI4CRMADDLOGLISTFILTERREQ">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTTABLENAME" nillable="true" type="tns:ArrayOfDCI4CRMTABLENAME" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMADDLOGLISTFILTERREQ" nillable="true" type="tns:DCI4CRMADDLOGLISTFILTERREQ" />
+      <xs:complexType name="ArrayOfDCI4CRMTABLENAME">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DCI4CRMTABLENAME" nillable="true" type="tns:DCI4CRMTABLENAME" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDCI4CRMTABLENAME" nillable="true" type="tns:ArrayOfDCI4CRMTABLENAME" />
+      <xs:complexType name="DCI4CRMTABLENAME">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SZTABLENAME" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMTABLENAME" nillable="true" type="tns:DCI4CRMTABLENAME" />
+      <xs:complexType name="DCI4CRMADDLOGLISTFILTERESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTTABLENAMELIST" nillable="true" type="tns:ArrayOfDCI4CRMTABLENAMELIST" />
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMADDLOGLISTFILTERESULT" nillable="true" type="tns:DCI4CRMADDLOGLISTFILTERESULT" />
+      <xs:complexType name="ArrayOfDCI4CRMTABLENAMELIST">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DCI4CRMTABLENAMELIST" nillable="true" type="tns:DCI4CRMTABLENAMELIST" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDCI4CRMTABLENAMELIST" nillable="true" type="tns:ArrayOfDCI4CRMTABLENAMELIST" />
+      <xs:complexType name="DCI4CRMTABLENAMELIST">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SZTABLENAME" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMTABLENAMELIST" nillable="true" type="tns:DCI4CRMTABLENAMELIST" />
+      <xs:complexType name="DCI4CRMGETLOGNRRESULT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NERRORNO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NMINLOGNR" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SZERRORMESSAGE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DCI4CRMGETLOGNRRESULT" nillable="true" type="tns:DCI4CRMGETLOGNRRESULT" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IAxDCI4CRM_getConfigFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:getConfigFile" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getConfigFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getConfigFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBOCVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getBOCVersion" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBOCVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getBOCVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBOCUniversalTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:getBOCUniversalTime" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBOCUniversalTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getBOCUniversalTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_axessForceGarbageColletor_InputMessage">
+    <wsdl:part name="parameters" element="tns:axessForceGarbageColletor" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_axessForceGarbageColletor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:axessForceGarbageColletorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getServerVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getServerVersion" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getServerVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getServerVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getModulVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getModulVersion" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getModulVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getModulVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_login_InputMessage">
+    <wsdl:part name="parameters" element="tns:login" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:logout" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:logoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getLogList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getLogList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getLogList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getLogListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_setEntitySnapshot_InputMessage">
+    <wsdl:part name="parameters" element="tns:setEntitySnapshot" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_setEntitySnapshot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setEntitySnapshotResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getSnapshotList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSnapshotList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getSnapshotList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSnapshotListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_setEntityDML_InputMessage">
+    <wsdl:part name="parameters" element="tns:setEntityDML" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_setEntityDML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setEntityDMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getSalesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSalesList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getSalesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSalesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getMediaID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMediaID" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getMediaID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMediaIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getWTPNr_InputMessage">
+    <wsdl:part name="parameters" element="tns:getWTPNr" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getWTPNr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getWTPNrResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getUsageList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUsageList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getUsageList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUsageListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getUsageOnlineList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUsageOnlineList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getUsageOnlineList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUsageOnlineListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getForeignPersonData_InputMessage">
+    <wsdl:part name="parameters" element="tns:getForeignPersonData" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getForeignPersonData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getForeignPersonDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getForeignSalesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getForeignSalesList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getForeignSalesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getForeignSalesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getChipOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:getChipOwner" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getChipOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getChipOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBarcodeSalesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getBarcodeSalesList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBarcodeSalesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getBarcodeSalesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBarcodeOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:getBarcodeOwner" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getBarcodeOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getBarcodeOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getViewDetails4RecordList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getViewDetails4RecordList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getViewDetails4RecordList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getViewDetails4RecordListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getNamedSalesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getNamedSalesList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getNamedSalesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getNamedSalesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getNamedUsageList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getNamedUsageList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getNamedUsageList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getNamedUsageListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPaymentData_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPaymentData" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPaymentData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPaymentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPaymentModifyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPaymentModifyList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPaymentModifyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPaymentModifyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getSalesModifyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSalesModifyList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getSalesModifyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSalesModifyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPackageProductionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPackageProductionList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPackageProductionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPackageProductionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPackageProductionData_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPackageProductionData" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPackageProductionData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPackageProductionDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getDiscountDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDiscountDetails" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getDiscountDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDiscountDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_clearLogListFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:clearLogListFilter" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_clearLogListFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:clearLogListFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_addLogListFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:addLogListFilter" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_addLogListFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addLogListFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getLogNr_InputMessage">
+    <wsdl:part name="parameters" element="tns:getLogNr" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getLogNr_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getLogNrResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getFilteredLoglist_InputMessage">
+    <wsdl:part name="parameters" element="tns:getFilteredLoglist" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getFilteredLoglist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getFilteredLoglistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPrePaidList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPrePaidList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPrePaidList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPrePaidListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPrePaidModifyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPrePaidModifyList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPrePaidModifyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPrePaidModifyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPPBCList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPPBCList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPPBCList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPPBCListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPPBCModifyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPPBCModifyList" />
+  </wsdl:message>
+  <wsdl:message name="IAxDCI4CRM_getPPBCModifyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPPBCModifyListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAxDCI4CRM">
+    <wsdl:operation name="getConfigFile">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxCommon/getConfigFile" message="tns:IAxDCI4CRM_getConfigFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxCommon/getConfigFileResponse" message="tns:IAxDCI4CRM_getConfigFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getBOCVersion">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxCommon/getBOCVersion" message="tns:IAxDCI4CRM_getBOCVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxCommon/getBOCVersionResponse" message="tns:IAxDCI4CRM_getBOCVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getBOCUniversalTime">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxCommon/getBOCUniversalTime" message="tns:IAxDCI4CRM_getBOCUniversalTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxCommon/getBOCUniversalTimeResponse" message="tns:IAxDCI4CRM_getBOCUniversalTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="axessForceGarbageColletor">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxCommon/axessForceGarbageColletor" message="tns:IAxDCI4CRM_axessForceGarbageColletor_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxCommon/axessForceGarbageColletorResponse" message="tns:IAxDCI4CRM_axessForceGarbageColletor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getServerVersion">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getServerVersion" message="tns:IAxDCI4CRM_getServerVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getServerVersionResponse" message="tns:IAxDCI4CRM_getServerVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getModulVersion">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getModulVersion" message="tns:IAxDCI4CRM_getModulVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getModulVersionResponse" message="tns:IAxDCI4CRM_getModulVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/login" message="tns:IAxDCI4CRM_login_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/loginResponse" message="tns:IAxDCI4CRM_login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/logout" message="tns:IAxDCI4CRM_logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/logoutResponse" message="tns:IAxDCI4CRM_logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getLogList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getLogList" message="tns:IAxDCI4CRM_getLogList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getLogListResponse" message="tns:IAxDCI4CRM_getLogList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setEntitySnapshot">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/setEntitySnapshot" message="tns:IAxDCI4CRM_setEntitySnapshot_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/setEntitySnapshotResponse" message="tns:IAxDCI4CRM_setEntitySnapshot_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSnapshotList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getSnapshotList" message="tns:IAxDCI4CRM_getSnapshotList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getSnapshotListResponse" message="tns:IAxDCI4CRM_getSnapshotList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setEntityDML">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/setEntityDML" message="tns:IAxDCI4CRM_setEntityDML_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/setEntityDMLResponse" message="tns:IAxDCI4CRM_setEntityDML_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSalesList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getSalesList" message="tns:IAxDCI4CRM_getSalesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getSalesListResponse" message="tns:IAxDCI4CRM_getSalesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMediaID">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getMediaID" message="tns:IAxDCI4CRM_getMediaID_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getMediaIDResponse" message="tns:IAxDCI4CRM_getMediaID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getWTPNr">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getWTPNr" message="tns:IAxDCI4CRM_getWTPNr_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getWTPNrResponse" message="tns:IAxDCI4CRM_getWTPNr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUsageList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getUsageList" message="tns:IAxDCI4CRM_getUsageList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getUsageListResponse" message="tns:IAxDCI4CRM_getUsageList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUsageOnlineList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getUsageOnlineList" message="tns:IAxDCI4CRM_getUsageOnlineList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getUsageOnlineListResponse" message="tns:IAxDCI4CRM_getUsageOnlineList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getForeignPersonData">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getForeignPersonData" message="tns:IAxDCI4CRM_getForeignPersonData_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getForeignPersonDataResponse" message="tns:IAxDCI4CRM_getForeignPersonData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getForeignSalesList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getForeignSalesList" message="tns:IAxDCI4CRM_getForeignSalesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getForeignSalesListResponse" message="tns:IAxDCI4CRM_getForeignSalesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getChipOwner">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getChipOwner" message="tns:IAxDCI4CRM_getChipOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getChipOwnerResponse" message="tns:IAxDCI4CRM_getChipOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getBarcodeSalesList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getBarcodeSalesList" message="tns:IAxDCI4CRM_getBarcodeSalesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getBarcodeSalesListResponse" message="tns:IAxDCI4CRM_getBarcodeSalesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getBarcodeOwner">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getBarcodeOwner" message="tns:IAxDCI4CRM_getBarcodeOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getBarcodeOwnerResponse" message="tns:IAxDCI4CRM_getBarcodeOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getViewDetails4RecordList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getViewDetails4RecordList" message="tns:IAxDCI4CRM_getViewDetails4RecordList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getViewDetails4RecordListResponse" message="tns:IAxDCI4CRM_getViewDetails4RecordList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getNamedSalesList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getNamedSalesList" message="tns:IAxDCI4CRM_getNamedSalesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getNamedSalesListResponse" message="tns:IAxDCI4CRM_getNamedSalesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getNamedUsageList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getNamedUsageList" message="tns:IAxDCI4CRM_getNamedUsageList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getNamedUsageListResponse" message="tns:IAxDCI4CRM_getNamedUsageList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentData">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPaymentData" message="tns:IAxDCI4CRM_getPaymentData_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPaymentDataResponse" message="tns:IAxDCI4CRM_getPaymentData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentModifyList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPaymentModifyList" message="tns:IAxDCI4CRM_getPaymentModifyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPaymentModifyListResponse" message="tns:IAxDCI4CRM_getPaymentModifyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSalesModifyList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getSalesModifyList" message="tns:IAxDCI4CRM_getSalesModifyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getSalesModifyListResponse" message="tns:IAxDCI4CRM_getSalesModifyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPackageProductionList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPackageProductionList" message="tns:IAxDCI4CRM_getPackageProductionList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPackageProductionListResponse" message="tns:IAxDCI4CRM_getPackageProductionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPackageProductionData">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPackageProductionData" message="tns:IAxDCI4CRM_getPackageProductionData_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPackageProductionDataResponse" message="tns:IAxDCI4CRM_getPackageProductionData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDiscountDetails">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getDiscountDetails" message="tns:IAxDCI4CRM_getDiscountDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getDiscountDetailsResponse" message="tns:IAxDCI4CRM_getDiscountDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="clearLogListFilter">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/clearLogListFilter" message="tns:IAxDCI4CRM_clearLogListFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/clearLogListFilterResponse" message="tns:IAxDCI4CRM_clearLogListFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addLogListFilter">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/addLogListFilter" message="tns:IAxDCI4CRM_addLogListFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/addLogListFilterResponse" message="tns:IAxDCI4CRM_addLogListFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getLogNr">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getLogNr" message="tns:IAxDCI4CRM_getLogNr_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getLogNrResponse" message="tns:IAxDCI4CRM_getLogNr_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFilteredLoglist">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getFilteredLoglist" message="tns:IAxDCI4CRM_getFilteredLoglist_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getFilteredLoglistResponse" message="tns:IAxDCI4CRM_getFilteredLoglist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPrePaidList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPrePaidList" message="tns:IAxDCI4CRM_getPrePaidList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPrePaidListResponse" message="tns:IAxDCI4CRM_getPrePaidList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPrePaidModifyList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPrePaidModifyList" message="tns:IAxDCI4CRM_getPrePaidModifyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPrePaidModifyListResponse" message="tns:IAxDCI4CRM_getPrePaidModifyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPPBCList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPPBCList" message="tns:IAxDCI4CRM_getPPBCList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPPBCListResponse" message="tns:IAxDCI4CRM_getPPBCList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPPBCModifyList">
+      <wsdl:input wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPPBCModifyList" message="tns:IAxDCI4CRM_getPPBCModifyList_InputMessage" />
+      <wsdl:output wsaw:Action="http://teamaxess.com/IAxDCI4CRM/getPPBCModifyListResponse" message="tns:IAxDCI4CRM_getPPBCModifyList_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAxDCI4CRM" type="tns:IAxDCI4CRM">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getConfigFile">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/getConfigFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBOCVersion">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/getBOCVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBOCUniversalTime">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/getBOCUniversalTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="axessForceGarbageColletor">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/axessForceGarbageColletor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServerVersion">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getServerVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getModulVersion">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getModulVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getLogList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setEntitySnapshot">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/setEntitySnapshot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSnapshotList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getSnapshotList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setEntityDML">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/setEntityDML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMediaID">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getMediaID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWTPNr">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getWTPNr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsageList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getUsageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsageOnlineList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getUsageOnlineList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getForeignPersonData">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getForeignPersonData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getForeignSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getForeignSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChipOwner">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getChipOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBarcodeSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getBarcodeSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBarcodeOwner">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getBarcodeOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getViewDetails4RecordList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getViewDetails4RecordList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNamedSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getNamedSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNamedUsageList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getNamedUsageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentData">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPaymentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPaymentModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSalesModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getSalesModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageProductionList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPackageProductionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageProductionData">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPackageProductionData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDiscountDetails">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getDiscountDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearLogListFilter">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/clearLogListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLogListFilter">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/addLogListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogNr">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getLogNr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFilteredLoglist">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getFilteredLoglist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrePaidList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPrePaidList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrePaidModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPrePaidModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPPBCList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPPBCList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPPBCModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPPBCModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpsBinding_IAxDCI4CRM" type="tns:IAxDCI4CRM">
+    <wsp:PolicyReference URI="#BasicHttpsBinding_IAxDCI4CRM_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getConfigFile">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/getConfigFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBOCVersion">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/getBOCVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBOCUniversalTime">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/getBOCUniversalTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="axessForceGarbageColletor">
+      <soap:operation soapAction="http://teamaxess.com/IAxCommon/axessForceGarbageColletor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServerVersion">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getServerVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getModulVersion">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getModulVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getLogList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setEntitySnapshot">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/setEntitySnapshot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSnapshotList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getSnapshotList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setEntityDML">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/setEntityDML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMediaID">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getMediaID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWTPNr">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getWTPNr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsageList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getUsageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsageOnlineList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getUsageOnlineList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getForeignPersonData">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getForeignPersonData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getForeignSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getForeignSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChipOwner">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getChipOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBarcodeSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getBarcodeSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBarcodeOwner">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getBarcodeOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getViewDetails4RecordList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getViewDetails4RecordList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNamedSalesList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getNamedSalesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getNamedUsageList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getNamedUsageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentData">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPaymentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPaymentModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSalesModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getSalesModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageProductionList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPackageProductionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPackageProductionData">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPackageProductionData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDiscountDetails">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getDiscountDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearLogListFilter">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/clearLogListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addLogListFilter">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/addLogListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLogNr">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getLogNr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFilteredLoglist">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getFilteredLoglist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrePaidList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPrePaidList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrePaidModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPrePaidModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPPBCList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPPBCList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPPBCModifyList">
+      <soap:operation soapAction="http://teamaxess.com/IAxDCI4CRM/getPPBCModifyList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DCI4CRMService">
+    <wsdl:port name="BasicHttpBinding_IAxDCI4CRM" binding="tns:BasicHttpBinding_IAxDCI4CRM">
+      <soap:address location="http://idre.teamaxess.com:16351/DCI4CRM/DCI4CRMService.svc/soap" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpsBinding_IAxDCI4CRM" binding="tns:BasicHttpsBinding_IAxDCI4CRM">
+      <soap:address location="https://idre.teamaxess.com:16350/DCI4CRM/DCI4CRMService.svc/soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
